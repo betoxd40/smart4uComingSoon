@@ -1,0 +1,95 @@
+
+
+@font-face {
+  font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+ src: url('../fonts/latin-roboto.woff2') format('woff2'),url('../fonts/latin-roboto.eot'), url('../fonts/latin-roboto.eot?#iefix') format('embedded-opentype'), url('.../fonts/latin-roboto.ttf') format('truetype'), url('../fonts/latin-roboto.svg#latolight') format('svg');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/latin-ext-roboto.woff2') format('woff2'),url('../fonts/latin-ext-roboto.eot'), url('../fonts/latin-ext-roboto.eot?#iefix') format('embedded-opentype'), url('../fonts/latin-ext-roboto.ttf') format('truetype'), url('../fonts/latin-ext-roboto.svg#latolight') format('svg');
+}
+
+@font-face {
+  font-family: 'Racing Sans One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/racingsansone-latin.woff2') format('woff2'),url('../fonts/racingsansone-latin.eot'), url('../fonts/racingsansone-latin.eot?#iefix') format('embedded-opentype'), url('.../fonts/racingsansone-latin.ttf') format('truetype'), url('../fonts/racingsansone-latin.svg#latolight') format('svg');
+}
+@font-face {
+  font-family: 'Racing Sans One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/racingsansone-latin-ext.woff2') format('woff2'),url('../fonts/racingsansone-latin-ext.eot'), url('../fonts/racingsansone-latin-ext.eot?#iefix') format('embedded-opentype'), url('../fonts/racingsansone-latin-ext.ttf') format('truetype'), url('../fonts/racingsansone-latin-ext.svg#latolight') format('svg');
+}
+
+
+#banner{
+  font-family: Roboto;
+  height: 100vh;
+  background: #222831;
+
+}
+
+#banner a{
+  color: #F2F2F2;
+  text-decoration: none;
+  font-weight: bold;
+
+}
+
+#banner a:hover{
+  color: #F96D00;
+}
+
+.fa{
+  color: #F2F2F2;
+}
+
+.fa:hover{
+  color: #F96D00;
+}
+
+#banner img{
+  width: 700px;
+  height: 250px;
+}
+
+h1{
+  font-family: Racing Sans One;
+  color: #F2F2F2;
+}
+
+h3{
+  font-family: Racing Sans One;
+  color: #F2F2F2;
+}
+
+h5{
+  font-weight: bold;
+}
+
+.centrar{
+  text-align: center;
+}
+
+.color-naranja{
+  color: #F96D00;
+}
+
+.modal-content{
+  background: #f2f2f2;
+}
+
+.btn-primary{
+  background: #393E46;
+  border-color: #393E46;
+}
+
+.btn-primary:hover{
+  background: #F96D00;
+  border-color: #F96D00;
+}

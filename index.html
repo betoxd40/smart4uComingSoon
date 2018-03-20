@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+  </head>
+  <body>
+    <section id="banner" class="container-fluid">
+      <div class="col-lg-12 d-flex justify-content-end pt-5 px-5 contacto">
+        <a href="#" data-toggle="modal" data-target="#exampleModal">Contacto</a>
+      </div>
+      <div class="col-lg-12 d-flex justify-content-center">
+        <img src="img/Smart-png.png" alt="logo-smart4you" >
+      </div>
+      <div class="d-flex justify-content-center col-lg-12">
+        <h1>¡Hola!</h1>
+
+      </div>
+      <div class="d-flex justify-content-center col-lg-12 centrar">
+        <h3>Actualmente nos encontremos en </br> <span class="color-naranja">remodelación</span> para traerte diseños y </br> efectos asombrosos</h3>
+      </div>
+      <div class="col-lg-12 d-flex justify-content-center pt-5">
+        <a href="https://www.instagram.com/smart4youdesign/"><i class="fa fa-instagram fa-2x px-4" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/smart4youdesign/"><i class="fa fa-facebook fa-2x px-4" aria-hidden="true"></i></a>
+        <a href="https://twitter.com/smart4youdesign"><i class="fa fa-twitter fa-2x px-4" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel text-align-center">¡Envíanos un mensaje!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="idForm" name="idForm" method="POST">
+                <div class="form-group col-lg-12 d-flex flex-row">
+                  <div class="col-lg-6">
+                    <label for="recipient-name" class="form-control-label">Nombre</label>
+                    <input type="text" class="form-control" required id="nombre" name="nombre">
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="recipient-name" class="form-control-label">Apellido</label>
+                    <input type="text" class="form-control" required id="apellido" name="apellido">
+                  </div>
+                </div>
+                <div class="form-group col-lg-12 d-flex flex-row">
+                  <div class="col-lg-6">
+                    <label for="recipient-name" class="form-control-label">País</label>
+                    <input type="text" class="form-control" required id="pais" name="pais">
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="recipient-name" class="form-control-label">Correo</label>
+                    <input type="text" class="form-control" required id="correo" name="correo">
+                  </div>
+                </div>
+                <div class="form-group col-lg-12">
+                  <div class="form-group">
+                    <label for="message-text" class="form-control-label">Mensaje:</label>
+                    <textarea class="form-control" required id="mensaje" name="mensaje"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center" >
+                  <input type="submit" name="enviar" class="btn btn-primary" value="Enviar">
+                </div>
+              </form>
+            </div>
+
+            <div class="col-12">
+              <p class="mensaje"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script>
+    $(document).ready(function(){
+          $('#idForm').submit(function(event) {
+              event.preventDefault();
+              var frm = $(this).serialize();
+              $.ajax({
+                method: "POST",
+                url: "inc/guardarDatos.php",
+                data: frm,
+              }).done( function( info ){
+                console.log( info );
+                var json_info = JSON.parse( info );
+                limpiar_datos();
+                });
+          });
+      });
+      function limpiar_datos(){
+          document.getElementById('nombre').value= ("");
+          document.getElementById('apellido').value= ("");
+          document.getElementById('pais').value= ("");
+          document.getElementById('correo').value= ("");
+          document.getElementById('mensaje').value= ("");
+          $('#exampleModal').modal('hide');
+
+      }
+      var mostrar_mensaje = function( informacion ){
+        var texto = "", color = "";
+        if( informacion.respuesta == "BIEN" ){
+            texto = "<strong>Bien!</strong> Se han guardado los cambios correctamente.";
+            color = "#379911";
+        }else if( informacion.respuesta == "ERROR"){
+            texto = "<strong>Error</strong>, no se encontró el id comercio, por favor verifique nuevamente.";
+            color = "#C9302C";
+        }
+        $(".mensaje").html( texto ).css({"color": color });
+        $(".mensaje").fadeOut(5000, function(){
+            $(this).html("");
+            $(this).fadeIn(3000);
+        });
+      }
+
+    </script>
+
+  </body>
+</html>
